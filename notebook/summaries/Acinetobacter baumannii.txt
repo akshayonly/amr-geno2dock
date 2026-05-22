@@ -1,0 +1,146 @@
+---------- Scientific name ----------
+Scientific name
+Acinetobacter baumannii            14459
+Acinetobacter baumannii MRSN 57       29
+Acinetobacter baumannii MRSN 58       29
+
+---------- Isolation type ----------
+Isolation type
+clinical               10039
+environmental/other     4478
+
+---------- Antibiotic ----------
+Antibiotic
+tobramycin                       924
+gentamicin                       896
+ampicillin-sulbactam             839
+ceftazidime                      829
+ceftriaxone                      823
+ciprofloxacin                    819
+levofloxacin                     817
+trimethoprim-sulfamethoxazole    814
+imipenem                         811
+amikacin                         806
+tetracycline                     804
+ampicillin                       681
+aztreonam                        668
+cefazolin                        660
+nitrofurantoin                   646
+cefotaxime                       619
+cefoxitin                        495
+meropenem                        446
+tigecycline                      208
+doripenem                        158
+cefepime                         154
+colistin                         154
+cefotetan                        100
+moxifloxacin                      89
+amoxicillin-clavulanic acid       44
+piperacillin-tazobactam           44
+ertapenem                         23
+chloramphenicol                   22
+azithromycin                      20
+nalidixic acid                    20
+sulfisoxazole                     20
+polymyxin B                       17
+minocycline                        8
+cefuroxime                         6
+cefotaxime-clavulanic acid         5
+ceftazidime-clavulanic acid        5
+cephalothin                        5
+cefixime                           4
+cefpodoxime                        4
+streptomycin                       4
+Imipenem-EDTA-PA                   2
+ticarcillin-clavulanic acid        2
+fosfomycin                         1
+norfloxacin                        1
+
+---------- Resistance phenotype ----------
+Resistance phenotype
+resistant       9633
+susceptible     3702
+intermediate     911
+not defined      271
+
+---------- Measurement sign ----------
+Measurement sign
+>     5395
+>=    4021
+=     2953
+<=    2146
+<        2
+
+---------- MIC (mg/L) ----------
+MIC (mg/L)
+8.000      3010
+32.000     2553
+16.000     2297
+2.000      1643
+4.000      1570
+64.000     1511
+1.000       899
+512.000     630
+0.500       203
+0.250        79
+128.000      49
+0.120        31
+256.000      15
+0.060         5
+0.125         2
+0.750         1
+192.000       1
+
+---------- Testing standard ----------
+Testing standard
+CLSI      14507
+EUCAST        4
+
+---------- Species ----------
+Species
+Acinetobacter baumannii    14517
+
+---------- Antibiotic_Class ----------
+Antibiotic_Class
+Aminoglycoside                                          2630
+Cephalosporin (3rd generation)                          2279
+Fluoroquinolone                                         1726
+Carbapenem                                              1440
+Penicillin / Beta-lactamase inhibitor combination        929
+Sulfonamide / Diaminopyrimidine combination              814
+Tetracycline                                             812
+Penicillin                                               681
+Monobactam                                               668
+Cephalosporin (1st generation)                           665
+Nitrofuran                                               646
+Cephalosporin (2nd generation)                           601
+Glycylcycline (Tetracycline)                             208
+Polymyxin                                                171
+Cephalosporin (4th generation)                           154
+Phenicol                                                  22
+Macrolide                                                 20
+Quinolone                                                 20
+Sulfonamide                                               20
+Cephalosporin / Beta-lactamase inhibitor combination      10
+Phosphonic acid antibiotic                                 1
+
+---------- TaxID ----------
+TaxID
+470    14517
+
+---------- Phylum ----------
+Phylum
+Pseudomonadota    14517
+
+---------- Class ----------
+Class
+Gammaproteobacteria    14517
+
+---------- Order ----------
+Order
+Moraxellales    14517
+
+---------- Genus ----------
+Genus
+Acinetobacter    14517
+

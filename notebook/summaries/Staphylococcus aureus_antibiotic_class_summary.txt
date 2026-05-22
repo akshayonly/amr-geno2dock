@@ -1,0 +1,12 @@
+---------- Top 10 Antibiotic Classes for Staphylococcus aureus ----------
+                              Antibiotic_Class  Genomes
+0  Sulfonamide / Diaminopyrimidine combination      726
+1                                    Rifamycin      539
+2              Penicillin (Antistaphylococcal)      535
+3                                    Macrolide      525
+4                                  Lincosamide      518
+5                               Aminoglycoside      400
+6                                 Glycopeptide      388
+7                                Oxazolidinone      341
+8                                 Tetracycline      329
+9                                  Lipopeptide      326

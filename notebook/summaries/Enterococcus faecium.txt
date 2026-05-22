@@ -1,0 +1,127 @@
+---------- Scientific name ----------
+Scientific name
+Enterococcus faecium    274
+
+---------- Isolation type ----------
+Isolation type
+clinical    274
+
+---------- Antibiotic ----------
+Antibiotic
+vancomycin                       31
+ampicillin                       30
+levofloxacin                     25
+ciprofloxacin                    24
+tetracycline                     24
+daptomycin                       21
+linezolid                        17
+doxycycline                      16
+erythromycin                     12
+gentamicin                       12
+streptomycin                      8
+nitrofurantoin                    6
+rifampin                          5
+trimethoprim-sulfamethoxazole     5
+clindamycin                       4
+minocycline                       4
+moxifloxacin                      4
+oxacillin                         4
+amikacin                          2
+cefepime                          2
+ceftazidime                       2
+tigecycline                       2
+meropenem                         2
+piperacillin-tazobactam           2
+penicillin                        2
+tobramycin                        2
+chloramphenicol                   1
+ceftaroline                       1
+amoxicillin-clavulanic acid       1
+cefazolin                         1
+cefoxitin                         1
+ceftriaxone                       1
+
+---------- Resistance phenotype ----------
+Resistance phenotype
+resistant                     146
+susceptible                   119
+intermediate                    6
+susceptible-dose dependent      3
+
+---------- Measurement sign ----------
+Measurement sign
+>=    134
+=      80
+<=     60
+
+---------- MIC (mg/L) ----------
+MIC (mg/L)
+8.00       48
+32.00      45
+2.00       37
+0.50       36
+16.00      28
+1.00       20
+4.00       18
+1000.00     7
+64.00       6
+500.00      5
+128.00      5
+0.25        4
+152.00      2
+0.12        1
+9.50        1
+
+---------- Testing standard ----------
+Testing standard
+CLSI    274
+
+---------- Species ----------
+Species
+Enterococcus faecium    274
+
+---------- Antibiotic_Class ----------
+Antibiotic_Class
+Fluoroquinolone                                      53
+Tetracycline                                         44
+Penicillin                                           32
+Glycopeptide                                         31
+Aminoglycoside                                       24
+Lipopeptide                                          21
+Oxazolidinone                                        17
+Macrolide                                            12
+Nitrofuran                                            6
+Rifamycin                                             5
+Sulfonamide / Diaminopyrimidine combination           5
+Lincosamide                                           4
+Penicillin (Antistaphylococcal)                       4
+Penicillin / Beta-lactamase inhibitor combination     3
+Cephalosporin (3rd generation)                        3
+Cephalosporin (4th generation)                        2
+Glycylcycline (Tetracycline)                          2
+Carbapenem                                            2
+Phenicol                                              1
+Cephalosporin (5th generation)                        1
+Cephalosporin (1st generation)                        1
+Cephalosporin (2nd generation)                        1
+
+---------- TaxID ----------
+TaxID
+1352    274
+
+---------- Phylum ----------
+Phylum
+Bacillota    274
+
+---------- Class ----------
+Class
+Bacilli    274
+
+---------- Order ----------
+Order
+Lactobacillales    274
+
+---------- Genus ----------
+Genus
+Enterococcus    274
+

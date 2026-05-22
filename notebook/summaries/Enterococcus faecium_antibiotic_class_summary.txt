@@ -1,0 +1,12 @@
+---------- Top 10 Antibiotic Classes for Enterococcus faecium ----------
+  Antibiotic_Class  Genomes
+0     Tetracycline       31
+1     Glycopeptide       31
+2       Penicillin       30
+3  Fluoroquinolone       25
+4      Lipopeptide       21
+5    Oxazolidinone       17
+6   Aminoglycoside       15
+7        Macrolide       12
+8       Nitrofuran        6
+9        Rifamycin        5

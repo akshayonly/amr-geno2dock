@@ -1,0 +1,12 @@
+---------- Top 10 Antibiotic Classes for Acinetobacter baumannii ----------
+                                    Antibiotic_Class  Genomes
+0                                     Aminoglycoside      812
+1                                    Fluoroquinolone      812
+2                     Cephalosporin (3rd generation)      812
+3                                         Carbapenem      809
+4        Sulfonamide / Diaminopyrimidine combination      807
+5                                       Tetracycline      794
+6  Penicillin / Beta-lactamase inhibitor combination      783
+7                                         Penicillin      649
+8                     Cephalosporin (1st generation)      644
+9                                         Nitrofuran      643

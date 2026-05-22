@@ -1,0 +1,128 @@
+---------- Scientific name ----------
+Scientific name
+Neisseria gonorrhoeae    5348
+
+---------- Isolation type ----------
+Isolation type
+clinical    5348
+
+---------- Antibiotic ----------
+Antibiotic
+cefixime            701
+ceftriaxone         701
+ciprofloxacin       701
+spectinomycin       701
+azithromycin        696
+tetracycline        696
+penicillin          449
+zoliflodacin        446
+benzylpenicillin    247
+cefoxitin             5
+gentamicin            5
+
+---------- Resistance phenotype ----------
+Resistance phenotype
+susceptible       2952
+resistant         1161
+intermediate       753
+not defined        451
+nonsusceptible      31
+
+---------- Measurement sign ----------
+Measurement sign
+=     5053
+<=     235
+>       45
+>=       8
+<        7
+
+---------- MIC (mg/L) ----------
+MIC (mg/L)
+16.0000     569
+0.2500      506
+0.0160      439
+0.1250      423
+0.0600      316
+1.0000      302
+0.0300      287
+0.5000      272
+32.0000     249
+2.0000      233
+0.0150      232
+0.0080      219
+4.0000      173
+8.0000      143
+0.0040      135
+64.0000     108
+12.0000     102
+0.3800       94
+1.5000       88
+0.0020       79
+0.1900       76
+0.7500       57
+6.0000       34
+24.0000      32
+0.0030       29
+0.0940       23
+0.0010       19
+3.0000       18
+0.0230       17
+0.0640       16
+0.0470       13
+0.0320       13
+0.0060       11
+256.0000      4
+128.0000      3
+0.0120        2
+0.1200        1
+1.1500        1
+0.2300        1
+0.0410        1
+0.0047        1
+0.0130        1
+0.9400        1
+0.0620        1
+0.0400        1
+0.2000        1
+2.5000        1
+0.3600        1
+
+---------- Testing standard ----------
+Testing standard
+CLSI    5348
+
+---------- Species ----------
+Species
+Neisseria gonorrhoeae    5348
+
+---------- Antibiotic_Class ----------
+Antibiotic_Class
+Cephalosporin (3rd generation)       1402
+Aminoglycoside                        706
+Fluoroquinolone                       701
+Macrolide                             696
+Penicillin                            696
+Tetracycline                          696
+Quinolone (Spiropyrimidinetrione)     446
+Cephalosporin (2nd generation)          5
+
+---------- TaxID ----------
+TaxID
+485    5348
+
+---------- Phylum ----------
+Phylum
+Pseudomonadota    5348
+
+---------- Class ----------
+Class
+Betaproteobacteria    5348
+
+---------- Order ----------
+Order
+Neisseriales    5348
+
+---------- Genus ----------
+Genus
+Neisseria    5348
+

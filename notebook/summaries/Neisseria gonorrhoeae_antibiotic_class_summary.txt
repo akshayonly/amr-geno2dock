@@ -1,0 +1,9 @@
+---------- Top 10 Antibiotic Classes for Neisseria gonorrhoeae ----------
+                 Antibiotic_Class  Genomes
+0                  Aminoglycoside      701
+1  Cephalosporin (3rd generation)      701
+2                 Fluoroquinolone      700
+3                      Penicillin      696
+4                    Tetracycline      695
+5                       Macrolide      693
+6  Cephalosporin (2nd generation)        5

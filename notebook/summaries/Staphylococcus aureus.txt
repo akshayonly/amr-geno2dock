@@ -1,0 +1,179 @@
+---------- Scientific name ----------
+Scientific name
+Staphylococcus aureus    6055
+
+---------- Isolation type ----------
+Isolation type
+clinical               6027
+environmental/other      28
+
+---------- Antibiotic ----------
+Antibiotic
+trimethoprim-sulfamethoxazole    726
+rifampin                         539
+oxacillin                        534
+erythromycin                     525
+clindamycin                      518
+gentamicin                       400
+vancomycin                       388
+linezolid                        341
+tetracycline                     331
+daptomycin                       326
+levofloxacin                     320
+ceftaroline                      194
+ciprofloxacin                    157
+tigecycline                      155
+minocycline                      154
+moxifloxacin                     150
+penicillin                        98
+mupirocin                         34
+cefoxitin                         31
+doxycycline                       27
+teicoplanin                       12
+nitrofurantoin                     9
+ampicillin                         8
+fusidic acid                       7
+ceftriaxone                        7
+trimethoprim                       7
+cefazolin                          6
+amikacin                           4
+chloramphenicol                    4
+meropenem                          4
+quinupristin                       4
+tobramycin                         4
+amoxicillin-clavulanic acid        3
+amoxicillin                        3
+ampicillin-sulbactam               3
+azithromycin                       3
+carbenicillin                      3
+avilamycin                         2
+cefepime                           2
+quinupristin-dalfopristin          2
+imipenem                           2
+streptomycin                       2
+synercid                           2
+dicloxacillin                      1
+ceftazidime                        1
+ertapenem                          1
+piperacillin-tazobactam            1
+
+---------- Resistance phenotype ----------
+Resistance phenotype
+susceptible       4948
+resistant         1040
+not defined         35
+intermediate        16
+nonsusceptible      16
+
+---------- Measurement sign ----------
+Measurement sign
+<=    3475
+=     1664
+>      501
+>=     384
+<       31
+
+---------- MIC (mg/L) ----------
+MIC (mg/L)
+0.5000      2172
+1.0000       996
+0.2500       976
+2.0000       648
+4.0000       425
+8.0000       274
+0.1200       246
+16.0000       97
+9.5000        60
+0.1250        22
+1.6700        15
+256.0000       8
+32.0000        7
+1.5000         5
+0.7500         5
+0.3800         5
+0.0080         4
+25.0000        4
+10.0000        4
+0.0600         3
+0.1900         3
+0.0940         3
+64.0000        3
+28.0000        2
+0.0640         2
+0.6600         2
+23.0000        2
+26.0000        2
+22.0000        1
+17.0000        1
+6.0000         1
+0.0094         1
+0.0190         1
+24.0000        1
+20.0000        1
+0.0120         1
+0.6500         1
+27.0000        1
+18.0000        1
+31.0000        1
+4.4200         1
+4.5900         1
+
+---------- Testing standard ----------
+Testing standard
+CLSI    6045
+
+---------- Species ----------
+Species
+Staphylococcus aureus    6055
+
+---------- Antibiotic_Class ----------
+Antibiotic_Class
+Sulfonamide / Diaminopyrimidine combination          726
+Fluoroquinolone                                      627
+Rifamycin                                            539
+Penicillin (Antistaphylococcal)                      535
+Macrolide                                            528
+Lincosamide                                          518
+Tetracycline                                         512
+Aminoglycoside                                       410
+Glycopeptide                                         400
+Oxazolidinone                                        341
+Lipopeptide                                          326
+Cephalosporin (5th generation)                       194
+Glycylcycline (Tetracycline)                         155
+Penicillin                                           109
+Mupirocin (Pseudomonic acid)                          34
+Cephalosporin (2nd generation)                        31
+Nitrofuran                                             9
+Cephalosporin (3rd generation)                         8
+Streptogramin                                          8
+Penicillin / Beta-lactamase inhibitor combination      7
+Fusidane                                               7
+Diaminopyrimidine                                      7
+Carbapenem                                             7
+Cephalosporin (1st generation)                         6
+Phenicol                                               4
+Penicillin (Antipseudomonal)                           3
+Orthosomycin                                           2
+Cephalosporin (4th generation)                         2
+
+---------- TaxID ----------
+TaxID
+1280    6055
+
+---------- Phylum ----------
+Phylum
+Bacillota    6055
+
+---------- Class ----------
+Class
+Bacilli    6055
+
+---------- Order ----------
+Order
+Caryophanales    6055
+
+---------- Genus ----------
+Genus
+Staphylococcus    6055
+

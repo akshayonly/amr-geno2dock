@@ -1,0 +1,12 @@
+---------- Top 10 Antibiotic Classes for Pseudomonas aeruginosa ----------
+                                       Antibiotic_Class  Genomes
+0                                        Aminoglycoside      625
+1                                       Fluoroquinolone      622
+2                                            Carbapenem      461
+3                        Cephalosporin (4th generation)      384
+4                        Cephalosporin (3rd generation)      382
+5     Penicillin / Beta-lactamase inhibitor combination      335
+6                                            Monobactam      172
+7                                             Polymyxin       65
+8  Cephalosporin / Beta-lactamase inhibitor combination       36
+9                          Penicillin (Antipseudomonal)       25

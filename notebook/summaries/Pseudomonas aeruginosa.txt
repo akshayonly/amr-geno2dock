@@ -1,0 +1,182 @@
+---------- Scientific name ----------
+Scientific name
+Pseudomonas aeruginosa    4856
+
+---------- Isolation type ----------
+Isolation type
+clinical               4810
+environmental/other      46
+
+---------- Antibiotic ----------
+Antibiotic
+ciprofloxacin                    619
+gentamicin                       543
+amikacin                         455
+tobramycin                       449
+levofloxacin                     407
+cefepime                         384
+ceftazidime                      372
+imipenem                         348
+piperacillin-tazobactam          332
+meropenem                        277
+aztreonam                        172
+colistin                          64
+polymyxin B                       37
+doripenem                         35
+ceftriaxone                       34
+ceftazidime-avibactam             30
+ampicillin                        22
+ceftolozane-tazobactam            20
+piperacillin                      20
+cefazolin                         18
+cefotaxime                        15
+trimethoprim-sulfamethoxazole     15
+amoxicillin-clavulanic acid       14
+ertapenem                         13
+tetracycline                      13
+tigecycline                       12
+azithromycin                      11
+ampicillin-sulbactam              11
+cefoxitin                         11
+erythromycin                      10
+oxacillin                          9
+amoxicillin                        8
+carbenicillin                      8
+clindamycin                        7
+chloramphenicol                    4
+vancomycin                         4
+imipenem-relebactam                4
+moxifloxacin                       4
+cefamandole                        3
+meropenem-vaborbactam              3
+norfloxacin                        3
+nitrofurantoin                     3
+streptomycin                       3
+ticarcillin-clavulanic acid        3
+Imipenem-EDTA-PA                   2
+clarithromycin                     2
+fosfomycin                         2
+ceftiofur                          1
+chlortetracycline                  1
+cefiderocol                        1
+danofloxacin                       1
+ceftaroline                        1
+enrofloxacin                       1
+florfenicol                        1
+neomycin                           1
+oxytetracycline                    1
+penicillin                         1
+nalidixic acid                     1
+spectinomycin                      1
+sulfisoxazole                      1
+sulfadimethoxine                   1
+linezolid                          1
+tiamulin                           1
+tilmicosin                         1
+minocycline                        1
+tulathromycin                      1
+tylosin                            1
+rifampin                           1
+
+---------- Resistance phenotype ----------
+Resistance phenotype
+resistant       2180
+susceptible     2107
+intermediate     432
+not defined      137
+
+---------- Measurement sign ----------
+Measurement sign
+=     1919
+>=    1453
+>      761
+<=     663
+<       60
+
+---------- MIC (mg/L) ----------
+MIC (mg/L)
+16.000      1028
+8.000        807
+4.000        618
+2.000        396
+32.000       278
+1.000        231
+64.000       176
+128.000      112
+0.500         94
+0.250         80
+0.120         10
+256.000        8
+512.000        7
+1024.000       5
+6.000          4
+12.000         3
+0.060          2
+11.000         2
+0.125          1
+13.000         1
+22.000         1
+18.000         1
+
+---------- Testing standard ----------
+Testing standard
+CLSI    4830
+
+---------- Species ----------
+Species
+Pseudomonas aeruginosa    4856
+
+---------- Antibiotic_Class ----------
+Antibiotic_Class
+Aminoglycoside                                          1452
+Fluoroquinolone                                         1035
+Carbapenem                                               675
+Cephalosporin (3rd generation)                           422
+Cephalosporin (4th generation)                           384
+Penicillin / Beta-lactamase inhibitor combination        360
+Monobactam                                               172
+Polymyxin                                                101
+Cephalosporin / Beta-lactamase inhibitor combination      50
+Penicillin                                                31
+Penicillin (Antipseudomonal)                              28
+Macrolide                                                 26
+Cephalosporin (1st generation)                            18
+Tetracycline                                              16
+Sulfonamide / Diaminopyrimidine combination               15
+Cephalosporin (2nd generation)                            14
+Glycylcycline (Tetracycline)                              12
+Penicillin (Antistaphylococcal)                            9
+Lincosamide                                                7
+Carbapenem / Beta-lactamase inhibitor combination          7
+Phenicol                                                   5
+Glycopeptide                                               4
+Nitrofuran                                                 3
+Phosphonic acid antibiotic                                 2
+Sulfonamide                                                2
+Cephalosporin (Siderophore)                                1
+Cephalosporin (5th generation)                             1
+Quinolone                                                  1
+Oxazolidinone                                              1
+Pleuromutilin                                              1
+Rifamycin                                                  1
+
+---------- TaxID ----------
+TaxID
+287    4856
+
+---------- Phylum ----------
+Phylum
+Pseudomonadota    4856
+
+---------- Class ----------
+Class
+Gammaproteobacteria    4856
+
+---------- Order ----------
+Order
+Pseudomonadales    4856
+
+---------- Genus ----------
+Genus
+Pseudomonas    4856
+

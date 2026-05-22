@@ -1,0 +1,12 @@
+---------- Top 10 Antibiotic Classes for Streptococcus pneumoniae ----------
+                              Antibiotic_Class  Genomes
+0                                   Penicillin      188
+1                                    Macrolide      188
+2                                 Tetracycline      187
+3  Sulfonamide / Diaminopyrimidine combination      187
+4                                  Lincosamide      187
+5               Cephalosporin (3rd generation)       51
+6                                   Carbapenem       51
+7                                Streptogramin       50
+8                                    Rifamycin       50
+9                                     Phenicol       50

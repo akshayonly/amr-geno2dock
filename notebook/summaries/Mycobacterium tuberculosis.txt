@@ -1,0 +1,42 @@
+---------- Scientific name ----------
+Series([], )
+
+---------- Isolation type ----------
+Series([], )
+
+---------- Antibiotic ----------
+Series([], )
+
+---------- Resistance phenotype ----------
+Series([], )
+
+---------- Measurement sign ----------
+Series([], )
+
+---------- MIC (mg/L) ----------
+Series([], )
+
+---------- Testing standard ----------
+Series([], )
+
+---------- Species ----------
+Series([], )
+
+---------- Antibiotic_Class ----------
+Series([], )
+
+---------- TaxID ----------
+Series([], )
+
+---------- Phylum ----------
+Series([], )
+
+---------- Class ----------
+Series([], )
+
+---------- Order ----------
+Series([], )
+
+---------- Genus ----------
+Series([], )
+

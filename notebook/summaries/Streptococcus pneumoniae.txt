@@ -1,0 +1,112 @@
+---------- Scientific name ----------
+Scientific name
+Streptococcus pneumoniae    1548
+
+---------- Isolation type ----------
+Isolation type
+clinical    1548
+
+---------- Antibiotic ----------
+Antibiotic
+erythromycin                     188
+clindamycin                      187
+penicillin                       187
+tetracycline                     187
+trimethoprim-sulfamethoxazole    187
+amoxicillin                       51
+ceftriaxone                       51
+meropenem                         51
+cefotaxime                        50
+cefuroxime                        50
+chloramphenicol                   50
+ciprofloxacin                     50
+levofloxacin                      50
+linezolid                         50
+rifampin                          50
+synercid                          50
+vancomycin                        50
+amikacin                           1
+ampicillin                         1
+azithromycin                       1
+carbenicillin                      1
+cefazolin                          1
+gentamicin                         1
+imipenem                           1
+oxacillin                          1
+tobramycin                         1
+
+---------- Resistance phenotype ----------
+Resistance phenotype
+susceptible     1445
+resistant         82
+intermediate      21
+
+---------- Measurement sign ----------
+Measurement sign
+<=    1161
+=      332
+>       55
+
+---------- MIC (mg/L) ----------
+MIC (mg/L)
+0.03     265
+0.50     251
+1.00     243
+2.00     207
+0.25     182
+0.12     159
+0.06     148
+4.00      52
+8.00      22
+32.00      5
+16.00      1
+
+---------- Testing standard ----------
+Testing standard
+CLSI    1548
+
+---------- Species ----------
+Species
+Streptococcus pneumoniae    1548
+
+---------- Antibiotic_Class ----------
+Antibiotic_Class
+Penicillin                                     239
+Macrolide                                      189
+Lincosamide                                    187
+Tetracycline                                   187
+Sulfonamide / Diaminopyrimidine combination    187
+Cephalosporin (3rd generation)                 101
+Fluoroquinolone                                100
+Carbapenem                                      52
+Cephalosporin (2nd generation)                  50
+Phenicol                                        50
+Oxazolidinone                                   50
+Rifamycin                                       50
+Streptogramin                                   50
+Glycopeptide                                    50
+Aminoglycoside                                   3
+Penicillin (Antipseudomonal)                     1
+Cephalosporin (1st generation)                   1
+Penicillin (Antistaphylococcal)                  1
+
+---------- TaxID ----------
+TaxID
+1313    1548
+
+---------- Phylum ----------
+Phylum
+Bacillota    1548
+
+---------- Class ----------
+Class
+Bacilli    1548
+
+---------- Order ----------
+Order
+Lactobacillales    1548
+
+---------- Genus ----------
+Genus
+Streptococcus    1548
+
