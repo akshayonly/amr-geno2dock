@@ -72,7 +72,7 @@ VALID_ORGANISMS = {
     "Streptococcus_pneumoniae",
     "Streptococcus_pyogenes",
     "Vibrio_cholerae",
-    "Acinetobacter",         # legacy alias still accepted
+    "Acinetobacter",  # legacy alias still accepted
 }
 
 # Default for this pipeline (Acinetobacter baumannii × tobramycin)
@@ -82,6 +82,7 @@ DEFAULT_ORGANISM = "Acinetobacter_baumannii"
 # ─────────────────────────────────────────────────────────────────────────────
 ## PHASE 0B — CLI
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -96,14 +97,16 @@ def parse_args() -> argparse.Namespace:
 
     # ── I/O ──────────────────────────────────────────────────────────────────
     parser.add_argument(
-        "-i", "--genomes-dir",
+        "-i",
+        "--genomes-dir",
         required=True,
         type=Path,
         metavar="DIR",
         help="Directory of genome FASTA files produced by Stage 02.",
     )
     parser.add_argument(
-        "-o", "--out-dir",
+        "-o",
+        "--out-dir",
         type=Path,
         default=Path("amrfinder"),
         metavar="DIR",
@@ -199,7 +202,8 @@ def parse_args() -> argparse.Namespace:
         help="Suppress tqdm progress bar (useful in cluster log files).",
     )
     parser.add_argument(
-        "-v", "--verbose",
+        "-v",
+        "--verbose",
         action="store_true",
         help="Enable DEBUG-level logging.",
     )
@@ -210,6 +214,7 @@ def parse_args() -> argparse.Namespace:
 # ─────────────────────────────────────────────────────────────────────────────
 ## PHASE 1 — Dependency & database validation
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def setup_logging(out_dir: Path, verbose: bool) -> logging.Logger:
     """
@@ -251,7 +256,8 @@ def check_amrfinder(log: logging.Logger) -> str:
 
     result = subprocess.run(
         ["amrfinder", "--version"],
-        capture_output=True, text=True,
+        capture_output=True,
+        text=True,
     )
     version = result.stdout.strip() or result.stderr.strip()
     log.info(f"AMRFinderPlus version: {version}")
@@ -273,18 +279,30 @@ def validate_organism(organism: str, log: logging.Logger) -> None:
 
 
 def update_amrfinder_database(log: logging.Logger) -> None:
-    """
-    Pull the latest AMRFinderPlus database.
-    Equivalent to: amrfinder --update
-    Recommended if the local db is more than ~4 weeks old.
-    """
     log.info("Updating AMRFinderPlus database …")
     result = subprocess.run(
         ["amrfinder", "--update"],
-        capture_output=True, text=True,
+        capture_output=True,
+        text=True,
     )
     if result.returncode != 0:
-        log.error(f"Database update failed:\n{result.stderr.strip()}")
+        stderr = result.stderr.strip()
+        # Known bug: update reports failure but db may be valid
+        if "version.txt" in stderr and "Cannot open" in stderr:
+            log.warning(
+                "AMRFinderPlus update returned a version.txt error — "
+                "this is a known bug. Checking if a valid database exists …"
+            )
+            # Verify a db dir with version.txt actually exists
+            db_base = Path(
+                "/home/zeus/miniconda3/envs/cloudspace/share/amrfinderplus/data"
+            )
+            valid_dbs = [d for d in db_base.glob("*/") if (d / "version.txt").exists()]
+            if valid_dbs:
+                latest = sorted(valid_dbs)[-1]
+                log.info(f"Using existing database: {latest}")
+                return
+        log.error(f"Database update failed:\n{stderr}")
         sys.exit(1)
     log.info("Database update complete.")
 
@@ -293,11 +311,11 @@ def update_amrfinder_database(log: logging.Logger) -> None:
 ## PHASE 2 — Genome discovery
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def discover_genomes(genomes_dir: Path, ext: str, log: logging.Logger) -> list[Path]:
     """
     Glob for FASTA files in genomes_dir. Exits if none are found.
-    Logs a warning for zero-byte files, which would cause AMRFinderPlus
-    to fail silently.
+    Filters out zero-byte files to prevent pipeline failures.
     """
     if not genomes_dir.exists():
         log.error(f"Genomes directory not found: {genomes_dir}")
@@ -309,20 +327,23 @@ def discover_genomes(genomes_dir: Path, ext: str, log: logging.Logger) -> list[P
         log.error(f"No {ext} files found in {genomes_dir}")
         sys.exit(1)
 
+    # Filter out empty files before passing to the worker pool
     empty = [f for f in fastas if f.stat().st_size == 0]
     if empty:
         log.warning(
-            f"{len(empty)} empty FASTA file(s) found — these will fail:\n"
+            f"{len(empty)} empty FASTA file(s) found — these will be skipped:\n"
             + "\n".join(f"  {f.name}" for f in empty)
         )
 
-    log.info(f"Genomes discovered: {len(fastas)}")
-    return fastas
+    valid_fastas = [f for f in fastas if f.stat().st_size > 0]
+    log.info(f"Genomes discovered (valid for processing): {len(valid_fastas)}")
+    return valid_fastas
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 ## PHASE 3 — Parallel AMRFinderPlus execution
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def build_amrfinder_cmd(
     fasta: Path,
@@ -335,26 +356,18 @@ def build_amrfinder_cmd(
 ) -> list[str]:
     """
     Assemble the amrfinder command for one genome.
-
-    Core flags:
-      -n / --nucleotide   : input FASTA (nucleotide mode)
-      --organism          : enables organism-specific point-mutation screening
-      --plus              : extends search to stress, virulence, and metal genes
-      --threads           : parallelism within a single AMRFinder job
-      -o                  : output TSV path
-      --print_node        : include the hierarchy node in output (useful for Stage 04)
-
-    Optional:
-      --ident_min         : override default BLAST identity threshold (0.9)
-      --coverage_min      : override default BLAST coverage threshold (0.5)
     """
     cmd = [
         "amrfinder",
-        "-n", str(fasta),
-        "--organism", organism,
-        "--threads", str(threads),
-        "-o", str(out_path),
-        "--print_node",          # adds Gene hierarchy node column — useful for feature grouping
+        "-n",
+        str(fasta),
+        "--organism",
+        organism,
+        "--threads",
+        str(threads),
+        "-o",
+        str(out_path),
+        "--print_node",  # adds Gene hierarchy node column
     ]
     if plus:
         cmd.append("--plus")
@@ -364,6 +377,18 @@ def build_amrfinder_cmd(
         cmd += ["--coverage_min", str(coverage_min)]
 
     return cmd
+
+
+def count_genes(filepath: Path) -> int:
+    """
+    Helper function to efficiently count lines in the TSV minus the header.
+    Returns -1 if the file cannot be read/parsed, indicating corruption.
+    """
+    try:
+        with open(filepath, "r") as f:
+            return max(0, sum(1 for _ in f) - 1)
+    except Exception:
+        return -1
 
 
 def run_one(
@@ -378,27 +403,22 @@ def run_one(
 ) -> dict:
     """
     Run AMRFinderPlus on a single genome FASTA.
-
-    Returns a result dict with keys:
-        accession, status, n_genes, stderr
-    where status ∈ {"done", "cached", "failed"}.
-
-    Uses an atomic write pattern (write to .tmp then rename) so that a
-    partial/crashed run never leaves a corrupt TSV that would be mistaken
-    for a valid cached result.
     """
     accession = fasta.stem
-    out_path  = out_dir / f"{accession}.tsv"
-    tmp_path  = out_path.with_suffix(".tmp")
+    out_path = out_dir / f"{accession}.tsv"
+    tmp_path = out_path.with_suffix(".tmp")
 
     # ── Cache hit ─────────────────────────────────────────────────────────────
     if out_path.exists() and out_path.stat().st_size > 0 and not force:
-        try:
-            n_genes = max(0, len(pd.read_csv(out_path, sep="\t")) )
-        except Exception:
-            n_genes = -1
-        return {"accession": accession, "status": "cached",
-                "n_genes": n_genes, "stderr": None}
+        n_genes = count_genes(out_path)
+        if n_genes >= 0:
+            return {
+                "accession": accession,
+                "status": "cached",
+                "n_genes": n_genes,
+                "stderr": None,
+            }
+        # If n_genes is -1, the file is corrupted. We ignore the cache and run.
 
     # ── Run ───────────────────────────────────────────────────────────────────
     cmd = build_amrfinder_cmd(
@@ -411,26 +431,43 @@ def run_one(
     if result.returncode != 0:
         if tmp_path.exists():
             tmp_path.unlink()
-        return {"accession": accession, "status": "failed",
-                "n_genes": 0, "stderr": result.stderr.strip()}
+        return {
+            "accession": accession,
+            "status": "failed",
+            "n_genes": 0,
+            "stderr": result.stderr.strip(),
+        }
 
     # ── Validate output ───────────────────────────────────────────────────────
     if not tmp_path.exists() or tmp_path.stat().st_size == 0:
-        return {"accession": accession, "status": "failed",
-                "n_genes": 0, "stderr": "AMRFinderPlus produced no output."}
+        return {
+            "accession": accession,
+            "status": "failed",
+            "n_genes": 0,
+            "stderr": "AMRFinderPlus produced no output.",
+        }
 
     # Count gene hits (header row excluded)
-    try:
-        df_out = pd.read_csv(tmp_path, sep="\t")
-        n_genes = len(df_out)
-    except Exception:
-        n_genes = -1      # file exists but is unparseable — flag it
+    n_genes = count_genes(tmp_path)
+    if n_genes == -1:
+        if tmp_path.exists():
+            tmp_path.unlink()
+        return {
+            "accession": accession,
+            "status": "failed",
+            "n_genes": 0,
+            "stderr": "AMRFinderPlus output was unreadable.",
+        }
 
     # ── Atomic rename ─────────────────────────────────────────────────────────
     tmp_path.rename(out_path)
 
-    return {"accession": accession, "status": "done",
-            "n_genes": n_genes, "stderr": None}
+    return {
+        "accession": accession,
+        "status": "done",
+        "n_genes": n_genes,
+        "stderr": None,
+    }
 
 
 def run_parallel(
@@ -448,12 +485,6 @@ def run_parallel(
 ) -> list[dict]:
     """
     Dispatch run_one() across a ThreadPoolExecutor.
-
-    Thread count note:
-      AMRFinderPlus is CPU-bound (BLAST). Using threads-per-job correctly
-      prevents oversubscription:
-          workers=4 × threads=4  →  16 cores consumed simultaneously.
-      Set workers × threads ≤ os.cpu_count() for best throughput.
     """
     cpu_total = os.cpu_count() or 1
     if workers * threads > cpu_total:
@@ -510,23 +541,16 @@ def run_parallel(
 ## PHASE 4 — Output validation & run report
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def write_run_report(results: list[dict], out_dir: Path, log: logging.Logger) -> None:
     """
     Write a per-accession TSV report and print a human-readable summary.
-
-    Columns:
-        accession     — GCA_* / GCF_* identifier
-        status        — done | cached | failed
-        n_genes       — number of AMR gene hits reported by AMRFinderPlus
-        tsv_path      — absolute path to the output TSV (empty if failed)
-        stderr        — error text if failed
-
-    The report is the primary handoff artefact for Stage 04.
     """
     report = pd.DataFrame(results)
     report["tsv_path"] = report.apply(
-        lambda r: str(out_dir / f"{r['accession']}.tsv")
-        if r["status"] != "failed" else "",
+        lambda r: (
+            str(out_dir / f"{r['accession']}.tsv") if r["status"] != "failed" else ""
+        ),
         axis=1,
     )
     report = report[["accession", "status", "n_genes", "tsv_path", "stderr"]]
@@ -544,18 +568,18 @@ def write_run_report(results: list[dict], out_dir: Path, log: logging.Logger) ->
         log.warning(f"Failed samples ({len(failed)}) written → {failed_path}")
 
     # ── Console summary ───────────────────────────────────────────────────────
-    counts   = report["status"].value_counts().to_dict()
-    n_total  = len(report)
-    n_done   = counts.get("done", 0)
+    counts = report["status"].value_counts().to_dict()
+    n_total = len(report)
+    n_done = counts.get("done", 0)
     n_cached = counts.get("cached", 0)
     n_failed = counts.get("failed", 0)
-    n_ok     = n_done + n_cached
-    pct_ok   = 100 * n_ok / n_total if n_total else 0
+    n_ok = n_done + n_cached
+    pct_ok = 100 * n_ok / n_total if n_total else 0
 
     ok_genes = report[report["status"] != "failed"]["n_genes"]
     median_g = ok_genes.median() if len(ok_genes) else 0
-    max_g    = ok_genes.max()    if len(ok_genes) else 0
-    min_g    = ok_genes.min()    if len(ok_genes) else 0
+    max_g = ok_genes.max() if len(ok_genes) else 0
+    min_g = ok_genes.min() if len(ok_genes) else 0
 
     print("\n" + "═" * 60)
     print("  STAGE 03 — AMRFINDERPLUS RUN REPORT")
@@ -565,7 +589,7 @@ def write_run_report(results: list[dict], out_dir: Path, log: logging.Logger) ->
     print(f"       — newly run     : {n_done}")
     print(f"       — cached        : {n_cached}")
     if n_failed:
-        print(f"  ⚠  Failed           : {n_failed}")
+        print(f"  ⚠  Failed            : {n_failed}")
     print(f"\n  AMR genes detected (successful genomes):")
     print(f"       median          : {median_g:.0f}")
     print(f"       min / max       : {min_g} / {max_g}")
@@ -591,6 +615,7 @@ def write_run_report(results: list[dict], out_dir: Path, log: logging.Logger) ->
 ## MAIN
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     args = parse_args()
 
@@ -610,17 +635,17 @@ def main() -> None:
 
     # ── Phase 3: Run in parallel ──────────────────────────────────────────────
     results = run_parallel(
-        fastas        = fastas,
-        out_dir       = args.out_dir,
-        organism      = args.organism,
-        workers       = args.workers,
-        threads       = args.threads,
-        plus          = not args.no_plus,
-        ident_min     = args.ident_min,
-        coverage_min  = args.coverage_min,
-        force         = args.force,
-        show_progress = not args.no_progressbar,
-        log           = log,
+        fastas=fastas,
+        out_dir=args.out_dir,
+        organism=args.organism,
+        workers=args.workers,
+        threads=args.threads,
+        plus=not args.no_plus,
+        ident_min=args.ident_min,
+        coverage_min=args.coverage_min,
+        force=args.force,
+        show_progress=not args.no_progressbar,
+        log=log,
     )
 
     # ── Phase 4: Report ───────────────────────────────────────────────────────
@@ -629,79 +654,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-# =============================================================================
-# USAGE EXAMPLES
-# =============================================================================
-#
-#  Default run (Acinetobacter baumannii, 4 workers × 4 threads):
-#    python amr_geno2dock_pipeline_stage_03.py \
-#        --genomes-dir genomes \
-#        --out-dir amrfinder
-#
-#  With database update (recommended if db is >4 weeks old):
-#    python amr_geno2dock_pipeline_stage_03.py \
-#        --genomes-dir genomes \
-#        --out-dir amrfinder \
-#        --update-db
-#
-#  Custom parallelism (e.g. 32-core server: 8 jobs × 4 threads):
-#    python amr_geno2dock_pipeline_stage_03.py \
-#        --genomes-dir genomes \
-#        --out-dir amrfinder \
-#        --workers 8 --threads 4
-#
-#  Different organism:
-#    python amr_geno2dock_pipeline_stage_03.py \
-#        --genomes-dir genomes \
-#        --out-dir amrfinder \
-#        --organism Klebsiella_pneumoniae
-#
-#  Disable point-mutation screening (--plus off):
-#    python amr_geno2dock_pipeline_stage_03.py \
-#        --genomes-dir genomes \
-#        --out-dir amrfinder \
-#        --no-plus
-#
-#  Force re-run of all samples (ignore cached outputs):
-#    python amr_geno2dock_pipeline_stage_03.py \
-#        --genomes-dir genomes \
-#        --out-dir amrfinder \
-#        --force
-#
-#  Verbose logging + suppress progress bar (cluster job logs):
-#    python amr_geno2dock_pipeline_stage_03.py \
-#        --genomes-dir genomes \
-#        --out-dir amrfinder \
-#        --no-progressbar -v
-#
-# =============================================================================
-# INSTALL AMRFINDERPLUS
-# =============================================================================
-#
-#   conda install -c bioconda ncbi-amrfinderplus
-#
-#   After install, initialise the database:
-#     amrfinder --update
-#
-#   List valid --organism values:
-#     amrfinder --list_organisms
-#
-# =============================================================================
-# STAGE 04 HANDOFF
-# =============================================================================
-#
-#   Input to Stage 04:
-#     amrfinder/*.tsv               — one TSV per genome
-#     amrfinder/amrfinder_run_report.tsv  — status + per-sample gene count
-#
-#   Stage 04 will pivot the TSVs into a gene presence/absence matrix:
-#     rows    = Assembly_Accession  (~543 genomes)
-#     columns = AMR gene names      (variable, typically 50–300)
-#     values  = 0 / 1
-#
-#   Then merge with phenotype labels from Stage 01:
-#     X = feature_matrix
-#     y = model_data['Resistance phenotype'].map({'resistant':1,'susceptible':0})
-# =============================================================================
