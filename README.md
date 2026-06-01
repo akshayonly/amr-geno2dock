@@ -102,12 +102,7 @@ Recommended configuration for Stage 05c: **59 genes (1% filter) + `sample_weight
 ├── amr_geno2dock_pipeline_stage_05a.py  # Sklearn baseline
 ├── amr_geno2dock_pipeline_stage_05b.py  # XGBoost baseline
 ├── amr_geno2dock_pipeline_stage_05c.py  # XGBoost tuning (Optuna)
-├── biosample_to_assembly.py             # BioSample → GCA/GCF accession mapping
-├── eda_amr_phenotype.py                 # Exploratory data analysis
-├── generate_candidate_report.py         # Candidate gene report
-├── 00_setup.sh                          # Dependency installation script
-├── AMR_GENO2DOCK_PROJECT_CONTEXT.md     # Conversation 1 full context
-└── AMR_GENO2DOCK_PROJECT_CONTEXT_02.md  # Conversation 2 full context
+└── biosample_to_assembly.py             # BioSample → GCA/GCF accession mapping
 
 # Runtime outputs (generated)
 genomes/                        # Downloaded .fna FASTA files
@@ -259,7 +254,7 @@ Both species use **NCBI Antibiogram (AST) data** — BioSample records with expe
 
 ## Literature
 
-Key references informing pipeline design (full `.md` summaries in project knowledge):
+Key references informing pipeline design:
 
 - **Feldgarden 2019** — AMRFinderPlus validation (6,242 isolates, 5 species)
 - **Nguyen 2017/2019** — XGBoost k-mer MIC prediction for *K. pneumoniae* and *Salmonella*
