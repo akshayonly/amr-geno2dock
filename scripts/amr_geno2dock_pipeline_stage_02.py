@@ -256,12 +256,12 @@ def _run_datasets_download(
             --api-key <KEY>            # optional
     """
     cmd = [
-        DATASETS_CMD, "download", "genome", "accession",
-        *accessions,
-        "--include", *include,
-        "--filename", str(zip_path),
-        "--no-progressbar",          # suppress nested CLI bars; we handle ours
-    ]
+            DATASETS_CMD, "download", "genome", "accession",
+            *accessions,
+            "--include", ",".join(include),
+            "--filename", str(zip_path),
+            "--no-progressbar",          # suppress nested CLI bars; we handle ours
+        ]
     if reference_only:
         cmd.append("--reference")
     if api_key:
